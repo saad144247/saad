@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Grade Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .A-plus {
+            color: white;
+            font-weight: bold;
+        }
+        .A {
+            color: yellow;
+            font-weight: bold;
+        }
+        .B {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+ 
+    
+    <label class="karachi" for="totalMarksPhysics"><b>Total Marks Physics</b>:</label>
+    <input type="number" id="totalMarksPhysics" placeholder="Enter total marks "><br><br>
+
+    <label class="karachi" for="obtainedMarksPhysics"><b>Obtained Marks Physics</b>:</label>
+    <input type="number" id="obtainedMarksPhysics" placeholder="Enter obtained marks "><br><br>
+
+    <label class="karachi"for="totalMarksChemistry"><b>Total Marks Chemistry</b>:</label>
+    <input type="number" id="totalMarksChemistry" placeholder="Enter total marks "><br><br>
+
+    <label class="karachi"for="obtainedMarksChemistry"><b>Obtained Marks Chemistry</b>:</label>
+    <input type="number" id="obtainedMarksChemistry" placeholder="Enter obtained marks"><br><br>
+
+
+    <label class="karachi" for="totalMarksMath"><b>Total Marks Math</b>:</label>
+    <input type="number" id="totalMarksMath" placeholder="Enter total marks"><br><br>
+
+    <label  class="karachi"for="obtainedMarksMath"><b>Obtained Marks Math</b>:</label>
+    <input type="number" id="obtainedMarksMath" placeholder="Enter obtained marks"><br><br>
+
+
+    <label  class="karachi"for="totalMarksEnglish"><b>Total Marks English</b>:</label>
+    <input type="number" id="totalMarksEnglish" placeholder="Enter total marks"><br><br>
+
+    <label class="karachi" for="obtainedMarksEnglish"><b>Obtained Marks English</b>:</label>
+    <input type="number" id="obtainedMarksEnglish" placeholder="Enter obtained marks"><br><br>
+
+    <button onclick="calculateGrades()">Calculate</button><br><br>
+
+    <p id="result"></p>
+
+    <script>
+        function calculateGrades() {
+            const subjects = ['Physics', 'Chemistry', 'Math', 'English'];
+            let resultHtml = '';
+
+            for (let subject of subjects) {
+                const totalMarks = parseFloat(document.getElementById('totalMarks' + subject).value);
+                const obtainedMarks = parseFloat(document.getElementById('obtainedMarks' + subject).value);
+
+
+                const percentage = (obtainedMarks / totalMarks) * 100;
+                let grade, className;
+
+                if (percentage < 70) {
+                    grade = 'B';
+                    className = 'B';
+                } else if (percentage < 80) {
+                    grade = 'A';
+                    className = 'A';
+                } else {
+                    grade = 'A+';
+                    className = 'A-plus';
+                }
+
+                resultHtml += `<span class="${className}">${subject} - Percentage: ${percentage.toFixed(2)}%<br>Grade: ${grade}</span><br><br>`;
+            }
+
+            document.getElementById('result').innerHTML = resultHtml;
+        }
+    </script>
+</body>
+</html>
